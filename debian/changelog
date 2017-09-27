@@ -1,0 +1,23 @@
+golang-github-hashicorp-go-reap (0.0~git20160113.0.2d85522-3) unstable; urgency=medium
+
+  * Replace golang-go with golang-any in Build-Depends, remove golang-go from Depends
+
+ -- Konstantinos Margaritis <markos@debian.org>  Tue, 08 Aug 2017 15:57:29 +0300
+
+golang-github-hashicorp-go-reap (0.0~git20160113.0.2d85522-2) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Paul Tagliamonte ]
+  * Use a secure transport for the Vcs-Git and Vcs-Browser URL
+
+  [ Tim Potter ]
+  * Fix TestReap_ReapChildren random failure (Closes: #834741).
+
+ -- Tim Potter <tpot@hpe.com>  Mon, 05 Sep 2016 11:28:07 +1000
+
+golang-github-hashicorp-go-reap (0.0~git20160113.0.2d85522-1) unstable; urgency=medium
+
+  * Initial release (Closes: #816817).
+
+ -- Dmitry Smirnov <onlyjob@debian.org>  Sun, 06 Mar 2016 00:42:22 +1100

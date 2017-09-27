@@ -1,0 +1,22 @@
+Description: Fix TestReap_ReapChildren random failure
+ There appears to be a race between the startup of the goroutine 
+ that calls ReapChildren and hitting the select statement that
+ pulls off the pids channel.  A delay has been added after the
+ goroutine to give it time to start.
+Author: Tim Potter <tpot@hpe.com>
+Bug: https://github.com/hashicorp/go-reap/issues/5
+Applied-Upstream: https://github.com/hashicorp/go-reap/commit/04ce4d0638f3b39b8a8030e2a22c4c90771fa5d6
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+Index: golang-github-hashicorp-go-reap/reap_unix_test.go
+===================================================================
+--- golang-github-hashicorp-go-reap.orig/reap_unix_test.go
++++ golang-github-hashicorp-go-reap/reap_unix_test.go
+@@ -30,6 +30,7 @@ func TestReap_ReapChildren(t *testing.T)
+ 		ReapChildren(pids, errors, done, &reapLock)
+ 		didExit <- struct{}{}
+ 	}()
++	time.Sleep(1 * time.Second)
+ 
+ 	killAndCheck := func() {
+ 		cmd := exec.Command("sleep", "5")
